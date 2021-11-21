@@ -1,4 +1,6 @@
 import sqlite3
+
+########################test.db 파일 생성#####################################
 '''
 # DB 생성 (오토 커밋)
 conn = sqlite3.connect("user.db", isolation_level=None)
@@ -8,11 +10,31 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS table1 \
     (no integer PRIMARY KEY, id text, pw text, nick text)")
 '''
-########################test.db 파일 생#####################################
+##################### DB 테이블에 데이터 넣기(INSERT) #########################
+'''
 conn = sqlite3.connect("user.db", isolation_level=None)
 c = conn.cursor()
 c.execute("INSERT INTO table1(no, id, pw, nick) \
     VALUES(?,?,?,?)", \
-    (1, 'user1','test123','김유저'))
+    (2, 'user2','test234','박유저'))
+'''
+##################### 데이터  전체 조회 ############################################
 
-#####################DB 테이블에 데이터 넣기##############################################
+'''
+conn = sqlite3.connect("user.db", isolation_level=None)
+c = conn.cursor()
+
+c.execute("SELECT * FROM table1")
+
+print(c.fetchall())
+input()
+'''
+################### 조건 순회 1 ##########################################
+
+conn = sqlite3.connect("user.db", isolation_level=None)
+c = conn.cursor()
+
+param1 = (2,)
+c.execute('SELECT * FROM table1 WHERE id=?',param1)
+print(c.fetchone())
+input()
