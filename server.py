@@ -1,5 +1,7 @@
 import http.server
 import socketserver
+from urllib import parse
+
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -14,6 +16,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         length = int(self.headers.get('Content-length', 0))
+        print(f"post length :{length}")
         data = self.rfile.read(length).decode()
         message = parse.parse_qs(data)["bdTitle"][0]
 
