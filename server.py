@@ -16,9 +16,15 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         length = int(self.headers.get('Content-length', 0))
-        print(f"post length :{length}")
         data = self.rfile.read(length).decode()
-        message = parse.parse_qs(data)["bdTitle"][0]
+        if self.path== '/loginAction':
+            id = parse.parse_qs(data)["userID"][0]
+            pw = parse.parse_qs(data)["userPassword"][0]
+
+
+        print(f"id :  :{id}")
+        print(f"pw :{pw}")
+
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain; charset=utf-8')
