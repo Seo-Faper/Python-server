@@ -13,12 +13,12 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         print(self)
-
+        
         return http.server.SimpleHTTPRequestHandler.do_POST(self)
 # Create an object of the above class
 handler_object = MyHttpRequestHandler
 
-PORT = 8000
+PORT = 8080
 my_server = socketserver.TCPServer(("", PORT), handler_object)
 
 # Star the server

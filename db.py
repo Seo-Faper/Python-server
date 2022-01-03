@@ -16,11 +16,11 @@ conn = sqlite3.connect("user.db", isolation_level=None)
 c = conn.cursor()
 c.execute("INSERT INTO table1(no, id, pw, nick) \
     VALUES(?,?,?,?)", \
-    (2, 'user2','test234','박유저'))
+    (3, 'user3','test234','서유저'))
 '''
 ##################### 데이터  전체 조회 ############################################
 
-'''
+
 conn = sqlite3.connect("user.db", isolation_level=None)
 c = conn.cursor()
 
@@ -28,13 +28,13 @@ c.execute("SELECT * FROM table1")
 
 print(c.fetchall())
 input()
-'''
+
 ################### 조건 순회 1 ##########################################
 
 conn = sqlite3.connect("user.db", isolation_level=None)
 c = conn.cursor()
+parm1 = ("user1",)
+c.execute('SELECT * FROM table1 WHERE id=?',parm1)
+print(c.fetchall())
 
-param1 = (2,)
-c.execute('SELECT * FROM table1 WHERE id=?',param1)
-print(c.fetchone())
 input()
