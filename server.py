@@ -22,7 +22,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             pw = parse.parse_qs(data)["userPassword"][0]
 
 
-        print(f"id :  :{id}")
+        print(f"id :{id}")
         print(f"pw :{pw}")
 
 
